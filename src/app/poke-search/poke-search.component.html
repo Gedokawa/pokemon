@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="searchBar">
+      <form action="">
+        <label for="pokemon">PokeSearch:</label>
+        <input type="text" name="pokemon" id="search" placeholder="Ex: Charizard or 6" [(ngModel)]="name">
+        <button (click)="findPokemons(name)">Show</button>
+        <!-- <button (click)="resetPokemon()">Reset</button> -->
+      </form>
+    </div>
+  <!-- <div *ngFor="let pokes of pokemons; let i = index;">
+    <p>{{pokes}}</p> -->
+  <div *ngIf="stats !== null">
+    <!-- <ul *ngFor="let poke of pokemons">
+      <li>{{poke}}</li>
+    </ul> -->
+    <p>{{stats.name}}</p>
+    <!-- <img src="{{stats.sprites.front_default}}" [className]="stats ? 'animated fadeInRight' : ''">
+    <img src="{{stats.sprites.back_default}}" [className]="stats ? 'animated fadeInLeft' : ''">  -->
+    <div class="row">
+      <div class="col-md-12">
+          <img src="{{stats.sprites.front_default}}" [className]="'animated fadeInRight'">
+          <img src="{{stats.sprites.back_default}}" [className]="'animated fadeInLeft'"> 
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+          <img src="{{stats.sprites.front_shiny}}" [className]="'animated fadeInRight'">
+          <img src="{{stats.sprites.back_shiny}}" [className]="'animated fadeInLeft'"> 
+      </div>
+    </div>
+    <input type="checkbox" [checked]="pokeCatched[catched]" (click)="save(stats.id)">
+  </div>
+</div>

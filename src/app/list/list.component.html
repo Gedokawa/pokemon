@@ -1,0 +1,52 @@
+<div>
+  <h2>Lista do wyświetlania ilość pokemonów</h2>
+  <form>
+      <label>lista pokemonow: </label>
+      <!-- (change)="changeLimits(e)"  -->
+      <input type="text" size="1" value="" #PokeLimit> 
+      <input type="text" size="1" value="" #Offset>
+      <button  (click)="changeLimits(Offset.value, PokeLimit.value)">Pokaz pokemony</button>
+  </form>
+  
+</div>
+  <div class="row">
+      <div class="col-lg-3 outline">
+          <div *ngIf="pokemons !== null">
+              <div *ngFor="let poke of pokemons.results; let i = index;" (click)="showName(poke.url)" class="animated fadeInLeft">
+                  <span>id: </span> {{poke.url | urlToId}}
+                  <span>name: </span> {{poke.name}}
+                  <!-- <span>name: </span> {{poke.url}} -->
+                  </div>
+          </div>
+      </div>
+      <div class="col-lg-7 ml-auto">
+          <div *ngIf="data !== null">
+    
+              <h1>#{{data.id}}</h1>
+              <img src="{{data.sprites.front_default}}">
+              <ul>
+              <li *ngFor="let typ of data.types" class="type {{typ.type.name}}">{{typ.type.name}}</li>
+            </ul>
+            <p>{{data.description}}</p>
+            <div class="row">
+              <div class="col">
+                  <ul *ngFor="let status of data.stats">
+                      <li>{{status.stat.name}}: {{status.base_stat}}</li>
+                  </ul>
+              </div>
+               <div class="col">
+                 <p>Accuracy: {{state.currentMove.accuracy}}</p>
+                 <p>Name Attack: {{state.currentMove.name}}</p>
+                 <p>Power: {{state.currentMove.power}}</p>
+                 <p>PP: {{state.currentMove.pp}}</p>
+                 <button (click)="prevMove()">prev</button>
+                 <button (click)="nextMove()">next</button>
+               </div>
+            </div>
+            
+          </div>
+    </div>
+  </div>
+
+
+

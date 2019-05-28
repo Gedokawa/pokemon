@@ -1,0 +1,8 @@
+<div *ngIf="data !== null">
+    <h1>#{{data.id}}</h1>
+    <img src="{{data.sprites.front_default}}">
+    <ul>
+      <li *ngFor="let typ of data.types">{{typ.type.name}}</li>
+    </ul>
+    <p>{{text}}</p>
+</div>

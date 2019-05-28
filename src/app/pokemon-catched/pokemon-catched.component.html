@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="searchBar">
+      <form action="">
+        <label for="pokemon">PokeSearch:</label>
+        <input type="text" name="pokemon" id="search" placeholder="Type Number Evolve" [(ngModel)]="name">
+        <button (click)="evolvesPokemon(name)">Show Evolve</button>
+      </form>
+    </div>
+</div>
+<div *ngIf='evolve !== null'>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+          <div class="animated flipInX">
+              <p>{{evolve.chain.species.name}}</p>
+              <p>{{evolve_to_second.species.name}}</p>
+              <p>{{evolve_to_third.species.name}}</p>
+              <p>{{evolve.chain.species.url}}</p>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
