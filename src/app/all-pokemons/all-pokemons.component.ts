@@ -7,9 +7,8 @@ import { PokemonDetails } from '../pokemon-details';
   styleUrls: ['./all-pokemons.component.css']
 })
 export class AllPokemonsComponent implements OnInit {
-
   limit: number = 10;
-  baseUrl: string = "https://pokeapi.co/api/v2/"
+  baseUrl: string = 'https://pokeapi.co/api/v2/';
   namesPokemons: string = null;
   data: PokemonDetails = null;
   text: string = null;
@@ -21,64 +20,51 @@ export class AllPokemonsComponent implements OnInit {
   change: boolean = false;
   pokeCatched = [];
 
+  public caughtPokemons: Array<string> = [];
 
-  changePage($event){
-    this.offset = 10 * $event.pageIndex; 
-    this.fetchPokemon(this.limit, this.offset);
-  }
-
-  fetchPokemon(limit: number, offset: number, category = 'pokemon'){
-
-    
-    fetch(`${this.baseUrl}${category}?offset=${offset}&limit=${limit}`)
-    .then(response => response.json())
-    .then(responseJson => {
-      this.text = responseJson.results;
-      this.nextPage = responseJson.next;
-      this.count = responseJson.count;
-    })
-  }
-  constructor() { 
-    this.catchStatus = localStorage.getItem(`saved-pokemon-id`);
+  constructor() {
+    this.caughtPokemons =
+      JSON.parse(localStorage.getItem(`caught-pokemons`)) || [];
   }
 
   ngOnInit() {
     this.fetchPokemon(this.limit, this.offset);
   }
 
-  // changeCatch($event, name){
-  //   if($event.target.innerHTML == this.catch) {
-  //     this.catch = 'Caught';
-  //   } else {
-  //     this.catch = 'Catch';
-  //   }
-  //   console.log($event.target.innerHTML);
-  //   console.log(name);
-  // }
+  changePage($event): void {
+    this.offset = 10 * $event.pageIndex;
+    this.fetchPokemon(this.limit, this.offset);
+  }
 
-  // changeCatch(el: string){
-  //   let divToChange = document.getElementById(el); 
-    
-  //   this.catchStatus = divToChange;
-  //   if(divToChange.innerText == 'Catch') {
-  //     this.catchStatus.innerText = 'Caught';
-  //   } else {
-  //     this.catchStatus.innerText = 'Catch';
-  //   }
-  //   console.log(divToChange);
-  // }
-  save(url, event){
-    // let storage = this.pokeCatched.push(url);
-    // for(let i=0; i<this.pokeCatched.length; i++){
-      // this.catchStatus = localStorage.setItem(`saved-pokemon-id`, this.pokeCatched[i]);
-      // console.log(this.pokeCatched.indexOf(this.catchStatus));
-      localStorage.setItem('saved-pokemon-id', url);
-      this.catchStatus = url;
-    // }
-    // this.catchStatus = storage;
-    // storage = this.catchStatus;
-    // console.log(storage);
-    // console.log(this.catchStatus);
-    
+  fetchPokemon(limit: number, offset: number, category = 'pokemon'): void {
+    fetch(`${this.baseUrl}${category}?offset=${offset}&limit=${limit}`)
+      .then(response => response.json())
+      .then(responseJson => {
+        this.text = responseJson.results;
+        this.nextPage = responseJson.next;
+        this.count = responseJson.count;
+      });
+  }
+
+  public isCaught(url: string): boolean {
+    return this.caughtPokemons.includes(url);
+  }
+
+  public preserveData(): void {
+    localStorage.setItem(
+      `caught-pokemons`,
+      JSON.stringify(this.caughtPokemons)
+    );
+  }
+
+  public toggleStatus(url: string): void {
+    if (this.isCaught(url)) {
+      const index = this.caughtPokemons.findIndex(u => u === url);
+      this.caughtPokemons.splice(index, 1);
+    } else {
+      this.caughtPokemons.push(url);
+    }
+    this.preserveData();
   }
 }
+

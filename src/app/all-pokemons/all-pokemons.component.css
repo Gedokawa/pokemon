@@ -6,4 +6,7 @@ table {
 tr:hover {
   background-color: grey;
 }
-  
+
+.catched {
+  background-color: red;
+}
