@@ -19,6 +19,10 @@ export class ListComponent implements OnInit {
     index: 0,
     currentMove: {},
   };
+  attacks = [];
+  accuracy = '';
+  attackname = '';
+  movesDetails = '';
   
   showPoke(limit: number, offset:number){
     fetch(`${this.baseUrl}?offset=${offset}&limit=${limit}`)
@@ -35,7 +39,7 @@ export class ListComponent implements OnInit {
 
   
   showName(url: string) {
-    
+    this.state.index = 0;
     let replacedURL = url.replace(/(.*?)pokemon\//, '' );
     let pokemonID = parseInt(replacedURL);
     // this.displayed_pokemonID = pokemonID;
@@ -43,7 +47,7 @@ export class ListComponent implements OnInit {
     fetch(`${this.baseUrl}/${pokemonID}`)
     .then(response => response.json())
     .then(details => {this.data = details;
-    console.log(this.data);
+    // console.log(this.data);
     // for(let i=0; i<details.moves.length; i++){
     //   console.log(details.moves[i].move.url);
     // }
@@ -56,11 +60,19 @@ export class ListComponent implements OnInit {
     // }
 
     // Nazwa ataku potwora
+    
     fetch(details.moves[this.state.index].move.url)
     .then(response => response.json())
+    .then(this.attacks = details.moves)
     .then(moveAtk => {
+      
       this.state.currentMove = moveAtk;
-      console.log(this.state.currentMove);
+      this.attacks[this.state.index];
+      this.movesDetails = '';
+      
+      // console.log(this.state.currentMove);
+      
+      console.log(this.attacks);
     })
     // Opis pokemona 
     fetch(`${details.species.url}`)
@@ -83,14 +95,49 @@ export class ListComponent implements OnInit {
   }  
   )}
 
+  fetchAttackDetails(url){
+    fetch(url)
+      .then(response => response.json())
+      .then(movesDetails => this.movesDetails = movesDetails
+      )
+      
+  }
+
   nextMove() {
-    this.state.index += 1
+
+    if(this.state.index == this.attacks.length -1 ){
+      
+      this.state.index;
+    }
+    else{
+      this.state.index += 1;
+            if(this.state.index  <=  this.attacks.length - 1){
+              this.state.currentMove = {};
+        if(this.state.index >= 0){
+          this.accuracy = this.attacks[this.state.index].move.url;
+          this.attackname = this.attacks[this.state.index].move.name;
+          this.fetchAttackDetails(this.attacks[this.state.index].move.url);
+        }
+      }
+    }
+
+
+
     console.log(this.state.index);
   }
 
   prevMove() {
     this.state.index -= 1;
-    console.log(this.state.index);
+    this.state.currentMove = {};
+    if(this.state.index < 0){
+      this.state.index = 0;
+    }
+    if(this.state.index >= 0){
+      this.accuracy = this.attacks[this.state.index].move.url;
+      this.attackname = this.attacks[this.state.index].move.name;
+      this.fetchAttackDetails(this.attacks[this.state.index].move.url);
+    }
+   
   }
 
   changeLimits(limit: number, offset: number) {

@@ -21,6 +21,7 @@ export class PokeSearchComponent implements OnInit {
     // this.catched = null;
     // let divRight = document.getElementById("right");
     // let divLeft = document.getElementById("left");
+    id = id.toLowerCase();
     if(id !== null && id !== ''){
       fetch(`${this.baseUrl}${this.type}/${id}`)
       .then(response => response.json())

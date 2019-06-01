@@ -1,28 +1,34 @@
 <div class="container-fluid">
-  <table class="table">
-      <thead>
-      <tr>
-        <th scope="col-1">#</th>
-        <th scope="col-1">Name</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let d of text; index as i" [class.catched]="isCaught(d.url)">
-        <th scope="row">{{ d.url | urlToId }}</th>
-        <td>
-          {{ d.name }}
-        </td>
-        <td><input type="checkbox" [checked]="isCaught(d.url)" (click)="toggleStatus(d.url)"></td>
-        <!-- <td (click)="change = !change">{{change ? "Caught" : "Catch"}}</td> -->
-        <!-- <td id="pok-{{i}}" (click)="changeCatch('pok-' + i)">Catch</td> -->
-      </tr>
-      </tbody>
-    </table>
-    <mat-paginator [length]="count"
-    [pageSize]="10"
-    [pageIndex]="currentPage - 1"
-    (page)="changePage($event)">
-    </mat-paginator>
+  <div class="row">
+    <div class="col">
+        <table class="table">
+            <thead>
+            <tr>
+              <th scope="col-1">#</th>
+              <th scope="col-1">Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let d of text; index as i" [class.catched]="isCaught(d.url)">
+              <th scope="row">{{ d.url | urlToId }}</th>
+              <td>
+                {{ d.name }}
+              </td>
+              <td><input type="checkbox" [checked]="isCaught(d.url)" (click)="toggleStatus(d.url)"></td>
+              <!-- <td (click)="change = !change">{{change ? "Caught" : "Catch"}}</td> -->
+              <!-- <td id="pok-{{i}}" (click)="changeCatch('pok-' + i)">Catch</td> -->
+            </tr>
+            </tbody>
+          </table>
+              <mat-paginator [length]="count"
+              [pageSize]="10"
+              [pageIndex]="currentPage - 1"
+              (page)="changePage($event)">
+              </mat-paginator>
+    </div>
+    
+  </div>
+  
     <!-- <ngb-pagination [collectionSize]="count" (page)="changePage($event)"  [pageIndex]="currentPage - 1" [maxSize]="10" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination> -->
 </div>
 

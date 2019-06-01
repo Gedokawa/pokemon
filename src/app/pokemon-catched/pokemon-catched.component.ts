@@ -18,19 +18,27 @@ export class PokemonCatchedComponent implements OnInit {
   evolvesPokemon(id){
     this.evolve = null;
     this.name = null;
+    this.evolve_to_third = null;
+    this.evolve_to_second = null;
     if(id !== null && id !== ''){
       fetch(`${this.base}evolution-chain/${id}`)
       .then(response => response.json())
       .then(responseJson => {
       this.evolve = responseJson;
-      console.log(responseJson)
-      this.evolve_to_second = this.evolve.chain.evolves_to[0];
-      // this.evolve_to_third = this.evolve_to_second.evolves_to[0];
-      if(this.evolve_to_second.evolves_to[0] !== 0){
-        this.evolve_to_third = this.evolve_to_second.evolves_to[0];
+      console.log(this.evolve);
+      if(this.evolve.chain.evolves_to.length  > 0 ){
+        this.evolve_to_second = this.evolve.chain.evolves_to[0];
+
+              // this.evolve_to_third = this.evolve_to_second.evolves_to[0];
+            if(this.evolve_to_second.evolves_to.length > 0){
+              this.evolve_to_third = this.evolve_to_second.evolves_to[0];
+            }
+
       }
-      console.log(this.evolve_to_third.evolves_to != []);
-      console.log(this.evolve_to_third);
+     
+
+      // console.log(this.evolve_to_third.evolves_to != []);
+      // console.log(this.evolve_to_third);
     })
     }
     

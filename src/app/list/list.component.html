@@ -35,10 +35,11 @@
                   </ul>
               </div>
                <div class="col">
-                 <p>Accuracy: {{state.currentMove.accuracy}}</p>
-                 <p>Name Attack: {{state.currentMove.name}}</p>
-                 <p>Power: {{state.currentMove.power}}</p>
-                 <p>PP: {{state.currentMove.pp}}</p>
+
+                 <p>Accuracy:  {{state.currentMove.accuracy}} {{movesDetails.accuracy}}</p>
+                 <p>Name Attack:  {{state.currentMove.name}} {{movesDetails.name}}</p>
+                 <p>Power: {{state.currentMove.power}} {{movesDetails.power}}</p>
+                 <p>PP: {{state.currentMove.pp}} {{movesDetails.pp}}</p>
                  <button (click)="prevMove()">prev</button>
                  <button (click)="nextMove()">next</button>
                </div>

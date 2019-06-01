@@ -9,7 +9,8 @@
     </div>
   <!-- <div *ngFor="let pokes of pokemons; let i = index;">
     <p>{{pokes}}</p> -->
-  <div *ngIf="stats !== null">
+    <div *ngIf="stats === null" >not found</div>
+  <div *ngIf="stats != null" >
     <!-- <ul *ngFor="let poke of pokemons">
       <li>{{poke}}</li>
     </ul> -->
