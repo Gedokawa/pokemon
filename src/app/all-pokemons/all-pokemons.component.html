@@ -7,12 +7,12 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let d of text; index as i">
+      <tr *ngFor="let d of text; index as i" [class.catched]="isCaught(d.url)">
         <th scope="row">{{ d.url | urlToId }}</th>
         <td>
           {{ d.name }}
         </td>
-        <td [class.catched]="isCaught(d.url)"><input type="checkbox" [checked]="isCaught(d.url)" (click)="toggleStatus(d.url)"></td>
+        <td><input type="checkbox" [checked]="isCaught(d.url)" (click)="toggleStatus(d.url)"></td>
         <!-- <td (click)="change = !change">{{change ? "Caught" : "Catch"}}</td> -->
         <!-- <td id="pok-{{i}}" (click)="changeCatch('pok-' + i)">Catch</td> -->
       </tr>

@@ -1,0 +1,12 @@
+img {
+    height: 200px;
+    width: 200px;
+    margin: 5px;
+    border-radius: 50px;
+    transition: all 0.5s;
+}
+
+img:hover {
+    background: rgba(0,0,0,0.3);
+    transition: all 0.5s;
+}

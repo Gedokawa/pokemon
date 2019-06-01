@@ -14,18 +14,25 @@ export class PokeSearchComponent implements OnInit {
   name = null;
   catched = null;
   pokeCatched = [];
+  error: string = null;
 
   findPokemons(id: any) {
-    this.stats = null;
-    this.catched = null;
+    // this.stats = null;
+    // this.catched = null;
     // let divRight = document.getElementById("right");
     // let divLeft = document.getElementById("left");
     if(id !== null && id !== ''){
       fetch(`${this.baseUrl}${this.type}/${id}`)
       .then(response => response.json())
       .then(responseJson => {
+        // if(id >= 808) {
           this.stats = responseJson;
+          this.pokeCatched.push(this.stats);
           this.name = '';
+        // } else {
+        //   this.error = 'No data';
+        // }
+          
         // divRight.classList.add('animated');
         // divRight.classList.add('fadeInRight');
         // divLeft.classList.add('animated');
@@ -37,19 +44,16 @@ export class PokeSearchComponent implements OnInit {
      
   }
 
-  save(id){
-    localStorage.setItem('catched-id', id);
-    this.pokeCatched.push(id);
-    this.catched = id;
-    console.log(this.pokeCatched);
-    console.log(this.catched);
+  handleClickDeletePoke(list) {
+    this.pokeCatched.splice(list, 1);
   }
+
   // resetPokemon() {
   //   this.stats = null;
   // }
 
   constructor() { 
-    this.catched = localStorage.getItem('catched-id');
+    // this.catched = localStorage.getItem('catched-id');
   }
 
   ngOnInit() {

@@ -18,7 +18,6 @@ export class ListComponent implements OnInit {
   state = {
     index: 0,
     currentMove: {},
-    loading: false
   };
   
   showPoke(limit: number, offset:number){
@@ -55,12 +54,15 @@ export class ListComponent implements OnInit {
     //     console.log(this.state.currentMove);
     //   });
     // }
+
+    // Nazwa ataku potwora
     fetch(details.moves[this.state.index].move.url)
     .then(response => response.json())
     .then(moveAtk => {
       this.state.currentMove = moveAtk;
       console.log(this.state.currentMove);
     })
+    // Opis pokemona 
     fetch(`${details.species.url}`)
     .then(response => response.json())
     .then(species => {
@@ -92,7 +94,7 @@ export class ListComponent implements OnInit {
   }
 
   changeLimits(limit: number, offset: number) {
-    if(limit <= 500 && limit > 0 && offset >= 0){
+    if(limit <= 1000 && limit > 0 && offset >= 0){
       this.showPoke(limit, offset);
       this.data = null;
     } else {

@@ -13,21 +13,20 @@
     <!-- <ul *ngFor="let poke of pokemons">
       <li>{{poke}}</li>
     </ul> -->
-    <p>{{stats.name}}</p>
+    <!-- <p>{{stats.name}}</p> -->
     <!-- <img src="{{stats.sprites.front_default}}" [className]="stats ? 'animated fadeInRight' : ''">
     <img src="{{stats.sprites.back_default}}" [className]="stats ? 'animated fadeInLeft' : ''">  -->
-    <div class="row">
-      <div class="col-md-12">
-          <img src="{{stats.sprites.front_default}}" [className]="'animated fadeInRight'">
-          <img src="{{stats.sprites.back_default}}" [className]="'animated fadeInLeft'"> 
+    <div class="row" *ngFor="let pokeArr of pokeCatched; let i = index;">
+      <div class="col-md-12" (click)="handleClickDeletePoke(i)">
+          <p>{{pokeArr.name}}</p>
+          <img src="{{pokeArr.sprites.front_default}}" [className]="'animated fadeInRight'">
+          <img src="{{pokeArr.sprites.back_default}}" [className]="'animated fadeInLeft'"> 
+          <!-- <img src="{{pokeArr.sprites.front_default}}" [className]="'animated fadeInRight'"> -->
+      <!-- </div>
+      <div class="col-md-3" (click)="handleClickDeletePoke(i)"> -->
+          <img src="{{pokeArr.sprites.front_shiny}}" [className]="'animated fadeInRight'">
+          <img src="{{pokeArr.sprites.back_shiny}}" [className]="'animated fadeInLeft'"> 
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-          <img src="{{stats.sprites.front_shiny}}" [className]="'animated fadeInRight'">
-          <img src="{{stats.sprites.back_shiny}}" [className]="'animated fadeInLeft'"> 
-      </div>
-    </div>
-    <input type="checkbox" [checked]="pokeCatched[catched]" (click)="save(stats.id)">
   </div>
 </div>

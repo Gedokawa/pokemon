@@ -31,7 +31,6 @@ export class PokemonCatchedComponent implements OnInit {
       }
       console.log(this.evolve_to_third.evolves_to != []);
       console.log(this.evolve_to_third);
-      
     })
     }
     
