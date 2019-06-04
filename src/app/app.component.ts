@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Pokedex';
-  images = './assets/images/pokeapi_logo.png';
+  images = './assets/images/pokedex.png';
   
   constructor() {}
 }
