@@ -2,10 +2,14 @@
   <div class="row">
     <div class="col">
         <div class="searchBar">
-            <form action="">
-              <label for="pokemon">PokeSearch:</label>
-              <input type="text" name="pokemon" id="search" placeholder="Type Number Evolve" [(ngModel)]="name">
-              <button (click)="changePokemon(name)">Show Evolve</button>
+            <form class="form-inline">
+              <div class="form-group mr-5">
+                  <label for="pokemon">PokeSearch Evolve:</label>
+              </div>
+              <div class="form-group mr-5">
+                <input class="form-control-plaintext" type="text" name="pokemon" id="search" placeholder="Type Number Evolve" [(ngModel)]="name">
+              </div>
+                  <button class="btn btn-primary" (click)="changePokemon(name)">Show Evolve</button>
             </form>
           </div>
       </div>
@@ -13,13 +17,25 @@
       <div *ngIf='evoSprites !== [] && evoNames !== []'>
         <div class="container">
           <div class="row">
-              <div class="col-md-4" *ngFor="let spriteNames of evoSprites.concat(evoNames); let i = index;">
-                  <div class="card animated flipInX" style="width: 18rem;">
-                    <img src="{{spriteNames}}" class="card-img-top" alt="">
-                    <div class="card-body">
-                      <p class="card-text" >{{spriteNames}}</p>
-                    </div>
+              <div class="col-md-4"  *ngFor="let evolve of evoSprites; let i = index;">
+                <div id="pokedex">
+                  <div id="camera"></div>
+                  <div id="status-color">
+                    <div class="status"></div>
+                    <div class="status"></div>
+                    <div class="status"></div>
                   </div>
+                  <div id="screen">
+                      <div class="card animated flipInX" style="width: 14rem;">
+                          <img id="pokemon-photo" src={{evolve}} class="card-img-top" alt="">
+                          <div class="card-body">
+                            <p class="card-title">{{evoNames[i]}}</p>
+                          </div>
+                        </div>
+                        <!-- <p class="card-title">{{evoNames[i]}}</p> -->
+                  </div>
+                </div>
+                  
               </div>
               <!-- <div class="col-md-4" >
                   <div class="card animated flipInX" style="width: 18rem;">
