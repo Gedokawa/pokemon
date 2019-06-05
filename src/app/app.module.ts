@@ -7,8 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { PokeSearchComponent } from './poke-search/poke-search.component';
 import { PageNotFoundComponent } from './pageNotFound.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
-import {RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AllPokemonsComponent } from './all-pokemons/all-pokemons.component';
 import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -67,6 +68,7 @@ const routes: Routes = [
     MatPaginatorModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
+    AngularFontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
