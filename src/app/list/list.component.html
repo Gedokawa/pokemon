@@ -1,4 +1,4 @@
-<div>
+<div class="container">
   <h2>Lista do wyświetlania ilość pokemonów</h2>
   <form>
       <label>lista pokemonow: </label>
@@ -9,7 +9,8 @@
   </form>
   
 </div>
-  <div class="row">
+  <div class="container">
+    <div class="row">
       <div class="col-lg-3 outline">
           <div *ngIf="pokemons !== null">
               <div *ngFor="let poke of pokemons.results; let i = index;" (click)="showName(poke.url)" class="animated fadeInLeft">
@@ -19,10 +20,88 @@
                   </div>
           </div>
       </div>
-      <div class="col-lg-7 ml-auto">
+      <div class="col-lg-8 ml-auto">
           <div *ngIf="data !== null">
-    
-              <h1>#{{data.id}}</h1>
+            <div class="pokedex">
+              <div class="panel left-panel">
+                <div class="pokemon-name screen">{{data.name}}
+                  <span class="name-no">no. {{data.id}}</span>
+                </div>
+                <div>
+                  <img src="{{data.sprites.front_default}}" class="pokemon-sprite" alt="pokemon">
+                </div>
+                <div class="pokemon-description screen">
+                  {{data.description}}
+                </div>
+              </div>
+              <div class="divider">
+                <div class="gap"></div>
+                <div class="hinger"></div>
+                <div class="gap"></div>
+                <div class="hinger"></div>
+                <div class="gap"></div>
+                <div class="hinger"></div>
+                <div class="gap"></div>
+              </div>
+              <div class="panel right-panel">
+                <div class="panel-row">
+                  <div class="screen stats">
+                    <div class="stat-line" *ngFor="let status of data.stats">
+                      <p>{{status.stat.name}}:..... {{status.base_stat}}</p>
+                    </div>
+                  </div>
+                  <div class="type-list">
+                    <div class="panel-header">Types</div>
+                    <div class="type-box">
+                      <div *ngFor="let typ of data.types" class="type {{typ.type.name}}">{{typ.type.name}}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-row panel-evo">
+                </div>
+                <div class="panel-row blue-buttons">
+                  <div class="blue-button"></div>
+                  <div class="blue-button"></div>
+                  <div class="blue-button"></div>
+                  <div class="blue-button"></div>
+                  <div class="blue-button"></div>
+                  <div class="blue-button"></div>
+                  <div class="blue-button"></div>
+                  <div class="blue-button"></div>
+                  <div class="blue-button"></div>
+                  <div class="blue-button"></div>
+                </div>
+                <div class="move-list">
+                  <div class="move-body move-screen screen">
+                    <div class="move-left">Attack Name: {{state.currentMove.name}} {{movesDetails.name}}
+                      <div class="move-stat">
+                        Accuracy:....... {{state.currentMove.accuracy}} {{movesDetails.accuracy}}
+                      </div>
+                      <div class="move-stat">
+                        Power:............ {{state.currentMove.power}} {{movesDetails.power}}
+                      </div>
+                      <div class="move-stat">
+                        PP:................. {{state.currentMove.pp}} {{movesDetails.pp}}
+                      </div>
+                    </div> 
+                  </div>
+                  <!-- <div class="move-controls">
+                    <div class="move-arrow" (click)="prevMove()">
+                      <i class="fas fa-caret-up"></i>
+                      <fa name="fa-caret-up"></fa>
+                    </div>
+                    <div class="move-arrow" (click)="nextMove()">
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                  </div> -->
+                </div>
+                <div class="panel-row controls">
+                  <div class="button" (click)="prevMove()"></div>
+                  <div class="button" (click)="nextMove()"></div>
+                </div>
+              </div>
+            </div>
+              <!-- <h1>#{{data.id}}</h1>
               <img src="{{data.sprites.front_default}}">
               <ul>
               <li *ngFor="let typ of data.types" class="type {{typ.type.name}}">{{typ.type.name}}</li>
@@ -42,12 +121,14 @@
                  <p>PP: {{state.currentMove.pp}} {{movesDetails.pp}}</p>
                  <button (click)="prevMove()">prev</button>
                  <button (click)="nextMove()">next</button>
-               </div>
-            </div>
+               </div> -->
+            <!-- </div> -->
             
           </div>
     </div>
   </div>
 
+  </div>
+  
 
 

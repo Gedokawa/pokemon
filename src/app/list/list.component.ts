@@ -17,7 +17,7 @@ export class ListComponent implements OnInit {
   displayed_pokemonID: number = null;
   state = {
     index: 0,
-    currentMove: {},
+    currentMove: {}
   };
   attacks = [];
   accuracy = '';
@@ -58,28 +58,28 @@ export class ListComponent implements OnInit {
     //     console.log(this.state.currentMove);
     //   });
     // }
-
+      // console.log(this.data);
     // Nazwa ataku potwora
     
     fetch(details.moves[this.state.index].move.url)
     .then(response => response.json())
     .then(this.attacks = details.moves)
     .then(moveAtk => {
-      
+      // this.type = moveAtk;
       this.state.currentMove = moveAtk;
       this.attacks[this.state.index];
       this.movesDetails = '';
-      
+      console.log(moveAtk);
       // console.log(this.state.currentMove);
       
-      console.log(this.attacks);
+      // console.log(this.attacks);
     })
     // Opis pokemona 
     fetch(`${details.species.url}`)
     .then(response => response.json())
     .then(species => {
       const entries = species.flavor_text_entries;
-
+      // console.log(species);
       for(let i=0; i<entries.length; i++){
         const entry = entries[i];
 
@@ -123,7 +123,7 @@ export class ListComponent implements OnInit {
 
 
 
-    console.log(this.state.index);
+    // console.log(this.state.index);
   }
 
   prevMove() {
