@@ -25,9 +25,8 @@
     <div class="row">
       <div class="col-lg-3 outline">
           <div *ngIf="pokemons !== null">
-              <ul *ngFor="let poke of pokemons.results; let i = index;" (click)="showName(poke.url)" class="animated fadeInLeft lists">
-                  <li><span>id: </span> {{poke.url | urlToId}}</li>
-                  <li><span>name: </span> {{poke.name}}</li>
+              <ul class="list-group" *ngFor="let poke of pokemons.results; let i = index;" (click)="showName(poke.url)" class="animated fadeInLeft">
+                  <li><span>id: </span> {{poke.url | urlToId}} <span>name: </span> {{poke.name}} </li>
                   <!-- <span>name: </span> {{poke.url}} -->
               </ul>
           </div>

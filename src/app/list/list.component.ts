@@ -23,7 +23,8 @@ export class ListComponent implements OnInit {
   accuracy = '';
   attackname = '';
   movesDetails = '';
-  
+  active = 'active';
+
   showPoke(offset: number, limit:number){
     fetch(`${this.baseUrl}?offset=${offset}&limit=${limit}`)
     .then(response => response.json())
@@ -32,6 +33,7 @@ export class ListComponent implements OnInit {
         this.pokemons = responseJson;
        }
        this.pokemons = responseJson;
+       this.active;
       //  this.pokemonsURLs = responseJson.results[0].url;
       //  console.log(this.pokemons);
       });
