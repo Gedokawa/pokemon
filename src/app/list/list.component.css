@@ -22,6 +22,11 @@
 											  transparent)
 }
 
+.searchBar {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
 .searchBar label {
     text-transform: uppercase;
     font-weight: bold;

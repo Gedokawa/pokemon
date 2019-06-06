@@ -2,17 +2,16 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <h2>Lista do wyświetlania ilość pokemonów</h2>
         <div class="searchBar">
             <form class="form-inline">
-              <div class="form-group mr-5 mb-5">
+              <div class="form-group mr-3 mb-5">
                   <label>Lista pokemonow id i limit: </label>
               </div>
-              <div class="form-group mr-5 mb-5">
-                  <input type="text" size="1" value="" #Offset> 
+              <div class="form-group mr-2 mb-5">
+                  <input class="form-control-plaintext" type="text" size="2" value="" #Offset placeholder="0"> 
               </div>
-              <div class="form-group mr-5 mb-5">
-                  <input type="text" size="1" value="" #PokeLimit>
+              <div class="form-group mr-2 mb-5">
+                  <input class="form-control-plaintext" type="text" size="3" value="" #PokeLimit placeholder="1...800">
               </div><!-- (change)="changeLimits(e)"  -->
                 <button class="btn btn-danger mb-5" (click)="changeLimits(Offset.value, PokeLimit.value)">Pokaz pokemony</button>
             </form>

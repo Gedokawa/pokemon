@@ -1,25 +1,30 @@
 <div class="container">
     <div class="searchBar">
-      <form action="">
-        <label for="pokemon">PokeSearch:</label>
-        <input type="text" name="pokemon" id="search" placeholder="Ex: Charizard or 6" [(ngModel)]="name">
-        <button (click)="findPokemons(name)">Show</button>
-        <!-- <button (click)="resetPokemon()">Reset</button> -->
-      </form>
+        <form class="form-inline">
+          <div class="form-group mr-5 mb-5">
+            <label for="pokemon">PokeSearch:</label>
+          </div>
+          <div class="form-group mr-5 mb-5">
+            <input class="form-control-plaintext" type="text" name="pokemon" id="search" placeholder="Ex: Charizard or 6" [(ngModel)]="name">
+          </div> 
+          <button class="btn btn-success mb-5" (click)="findPokemons(name)">Show</button>
+          <!-- <button (click)="resetPokemon()">Reset</button> -->
+        </form>
     </div>
   <!-- <div *ngFor="let pokes of pokemons; let i = index;">
     <p>{{pokes}}</p> -->
-    <div *ngIf="stats === null" >not found</div>
-  <div *ngIf="stats != null" >
+    
+  <div *ngIf="stats != null">
     <!-- <ul *ngFor="let poke of pokemons">
       <li>{{poke}}</li>
     </ul> -->
     <!-- <p>{{stats.name}}</p> -->
     <!-- <img src="{{stats.sprites.front_default}}" [className]="stats ? 'animated fadeInRight' : ''">
     <img src="{{stats.sprites.back_default}}" [className]="stats ? 'animated fadeInLeft' : ''">  -->
-    <div class="row" *ngFor="let pokeArr of pokeCatched; let i = index;">
+    
+    <div class="row" *ngFor="let pokeArr of pokeCatched; let i = index;">      
       <div class="col-md-12" (click)="handleClickDeletePoke(i)">
-          <p>{{pokeArr.name}}</p>
+          <p class="text-center">{{pokeArr.name}}</p>
           <img src="{{pokeArr.sprites.front_default}}" [className]="'animated fadeInRight'">
           <img src="{{pokeArr.sprites.back_default}}" [className]="'animated fadeInLeft'"> 
           <!-- <img src="{{pokeArr.sprites.front_default}}" [className]="'animated fadeInRight'"> -->
