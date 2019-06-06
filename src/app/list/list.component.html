@@ -1,23 +1,35 @@
 <div class="container">
-  <h2>Lista do wyświetlania ilość pokemonów</h2>
-  <form>
-      <label>lista pokemonow: </label>
-      <!-- (change)="changeLimits(e)"  -->
-      <input type="text" size="1" value="" #PokeLimit> 
-      <input type="text" size="1" value="" #Offset>
-      <button  (click)="changeLimits(Offset.value, PokeLimit.value)">Pokaz pokemony</button>
-  </form>
-  
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h2>Lista do wyświetlania ilość pokemonów</h2>
+        <div class="searchBar">
+            <form class="form-inline">
+              <div class="form-group mr-5 mb-5">
+                  <label>Lista pokemonow id i limit: </label>
+              </div>
+              <div class="form-group mr-5 mb-5">
+                  <input type="text" size="1" value="" #Offset> 
+              </div>
+              <div class="form-group mr-5 mb-5">
+                  <input type="text" size="1" value="" #PokeLimit>
+              </div><!-- (change)="changeLimits(e)"  -->
+                <button class="btn btn-danger mb-5" (click)="changeLimits(Offset.value, PokeLimit.value)">Pokaz pokemony</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>  
 </div>
   <div class="container">
     <div class="row">
       <div class="col-lg-3 outline">
           <div *ngIf="pokemons !== null">
-              <div *ngFor="let poke of pokemons.results; let i = index;" (click)="showName(poke.url)" class="animated fadeInLeft">
-                  <span>id: </span> {{poke.url | urlToId}}
-                  <span>name: </span> {{poke.name}}
+              <ul *ngFor="let poke of pokemons.results; let i = index;" (click)="showName(poke.url)" class="animated fadeInLeft lists">
+                  <li><span>id: </span> {{poke.url | urlToId}}</li>
+                  <li><span>name: </span> {{poke.name}}</li>
                   <!-- <span>name: </span> {{poke.url}} -->
-                  </div>
+              </ul>
           </div>
       </div>
       <div class="col-lg-8 ml-auto">

@@ -24,7 +24,7 @@ export class ListComponent implements OnInit {
   attackname = '';
   movesDetails = '';
   
-  showPoke(limit: number, offset:number){
+  showPoke(offset: number, limit:number){
     fetch(`${this.baseUrl}?offset=${offset}&limit=${limit}`)
     .then(response => response.json())
     .then(responseJson => {
@@ -140,9 +140,9 @@ export class ListComponent implements OnInit {
    
   }
 
-  changeLimits(limit: number, offset: number) {
+  changeLimits(offset: number, limit: number) {
     if(limit <= 1000 && limit > 0 && offset >= 0){
-      this.showPoke(limit, offset);
+      this.showPoke(offset, limit);
       this.data = null;
     } else {
       this.pokemons = null;
